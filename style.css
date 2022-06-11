@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} :root {
+    --color1: #448D76;
+    --color2: #FD4D0C;
+    --color3: #F7DDD4;
+    --color4: #14B884;
+    --color5: #093426;
+} body {
+    background-color: var(--color1);
+} h1, h2, button {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    text-align: center;
+} h1, h2 {
+    max-width: 80%;
+    margin-left: 10%; 
+} h1 {
+    font-size: 5vmax;
+    padding: 100px 0 16px;
+    color: var(--color3);
+} h2 {
+    font-size: 2vmax;
+    color: var(--color5);
+} button {
+    display: block;
+    margin: 60px auto 0;
+    padding: 1vmax 2vmax;
+    border-radius: 44px;
+    border-style: none;
+    font-size: 1.8vmax;
+    letter-spacing: 1px;
+    background-color: var(--color2);
+    color: var(--color3);
+    transition-property: background-color, color;
+    transition-duration: .4s; 
+    transition-timing-function: ease-in;
+    cursor: pointer;
+} button:hover {
+    background-color: var(--color3);
+    color: var(--color2);
+} video {
+    display: block;
+    width: 80vw;
+    max-height: 500px;
+    margin: 0 auto;
+    padding: 100px 0;
+} footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+    text-align: center;
+    letter-spacing: 1px;
+    background-color: var(--color5);
+    color: var(--color3);
+}
+
