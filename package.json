@@ -1,0 +1,26 @@
+{
+  "name": "video-uploader",
+  "version": "1.0.0",
+  "description": "Web application that allows uploading, saving to database and displaying user's video",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarekSzczepanski/Video-Uploader.git"
+  },
+  "author": "Marek Szczepański",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarekSzczepanski/Video-Uploader/issues"
+  },
+  "homepage": "https://github.com/MarekSzczepanski/Video-Uploader#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "fs-extra": "^10.1.0",
+    "multer": "^1.4.5-lts.1",
+    "mysql": "^2.18.1"
+  }
+}
