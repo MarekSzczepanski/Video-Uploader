@@ -13,7 +13,8 @@
   <body>
     <h1>Video Uploader</h1>
     <h2>Upload your video and save it on this page</h2>
-    <button>Upload</button>
+    <label for="logo-upload" class="waiting">Upload</label>
+    <input type="file" id="logo-upload"/>
     <video loop autoplay muted>
         <source type="video/webm">
         <source type="video/ogg">
@@ -21,5 +22,6 @@
     </video>
     <footer>Created by Marek Szczepański</footer>
 	<script src="index.js"></script>
+  <script src="env.js"></script>
   </body>
 </html>
