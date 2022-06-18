@@ -14,10 +14,15 @@ const upload_video = (e) => {
         const video_blob = new Blob([new Uint8Array(buffer)], { type: 'video/mp4' });
         const temporary_video_frontend_url = window.URL.createObjectURL(video_blob);
         const fd = new FormData();
-        const is_production = document.body.dataset.prod;
+        const body = document.body;
+        const is_production = body.dataset.prod;
 
-        fd.append('video', file, file.name);
         manage_button_state('Uploading...', 'pending');
+        body.dataset.hostname = window.location.hostname;
+
+        const domain = body.dataset.hostname;
+
+        fd.append('video', file, `${file.name}(^)${domain}`);
 
         fetch(is_production ? 'prodlink' : 'http://localhost:5000/video/', {
             method: 'POST',

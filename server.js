@@ -3,13 +3,33 @@ const path = require('path');
 const fs = require('fs-extra');
 const cors = require('cors');
 const multer = require('multer');
-//const mysql = require('mysql');
+const mysql = require('mysql');
+const ejs = require('ejs');
 
 const port = 5000;
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(__dirname + '/static'));
+app.use(express.static(__dirname + '/static/video'));
+
+// DB
+
+const connection = mysql.createConnection({
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASS,
+    database: process.env.DB,
+});
+
+connection.connect((err) => {
+    if (err) return console.error('error: ' + err.message);
+
+    console.log('Connected to the MySQL server.');
+  
+    if (err) throw err;
+});
 
 // MULTER
 
@@ -26,7 +46,7 @@ const upload = multer({
     storage: multer.diskStorage({
         destination: (req, file, callback) => {
 
-            const server_path = `${path.dirname(require.main.filename)}/video`;
+            const server_path = `${path.dirname(require.main.filename)}/static/video`;
 
             const remove_old_video = () => {
                 fs.readdir(server_path, (err, files) => {
@@ -45,14 +65,26 @@ const upload = multer({
             callback(null, server_path);
 
         },
-        filename: (req, file, callback) => {      
-            callback(null, 'video.mp4');
+        filename: (req, file, callback) => {    
+
+            const file_name_and_domain_name = file.originalname;
+            const filename = file_name_and_domain_name.split('(^)')[0];
+
+            callback(null, filename);
         }
     }),
     fileFilter: track_file_filter
 });
 
 // ROUTES
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+app.get('/', function(req, res) {
+    res.render('index');
+})
+
 
 app.post('/video', upload.single('video'), (req, res) => {
     return res.json({ok: 1})
