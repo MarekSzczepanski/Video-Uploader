@@ -1,6 +1,7 @@
 const input = document.querySelector('input');
 const label = document.querySelector('label');
 const video = document.querySelector('video');
+const button = document.querySelector('button');
 
 const upload_video = (e) => {
     e.stopPropagation();
@@ -16,13 +17,13 @@ const upload_video = (e) => {
         const fd = new FormData();
         const body = document.body;
         const is_production = body.dataset.prod;
+        const textarea = document.querySelector('textarea');
+        const description = textarea.value;
 
         manage_button_state('Uploading...', 'pending');
         body.dataset.hostname = window.location.hostname;
 
-        const domain = body.dataset.hostname;
-
-        fd.append('video', file, `${file.name}(^)${domain}`);
+        fd.append('video', file, `${file.name}(^)${description}`);
 
         fetch(is_production ? 'prodlink' : 'http://localhost:5000/video/', {
             method: 'POST',
@@ -30,9 +31,12 @@ const upload_video = (e) => {
         }).then((data) => {
             setTimeout(() => {
                 if (data.ok) {
+                    const description_tag = document.querySelector('.description');
+
                     manage_button_state('Uploaded!', 'done');
 
                     video.src = temporary_video_frontend_url;
+                    description_tag.textContent = description;
     
                     setTimeout(() => {
                         manage_button_state('Upload', 'waiting');
@@ -55,4 +59,13 @@ const manage_button_state = (text, layout) => {
     label.className = layout;
 }
 
+const open_upload_modal = () => {
+    const modal = document.querySelector('.modal');
+    const overlay = document.querySelector('.overlay');
+
+    modal.style.display = 'block';
+    overlay.style.display = 'block';
+}
+
 input.addEventListener('change', (e) => upload_video(e));
+button.addEventListener('click', open_upload_modal);

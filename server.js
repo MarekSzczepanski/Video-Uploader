@@ -4,7 +4,6 @@ const fs = require('fs-extra');
 const cors = require('cors');
 const multer = require('multer');
 const mysql = require('mysql');
-const ejs = require('ejs');
 
 const port = 5000;
 const app = express();
@@ -60,10 +59,19 @@ const upload = multer({
                 });
             }
 
+            const save_description_to_db = () => {
+                const file_name_and_domain_name = file.originalname;
+                const description = file_name_and_domain_name.split('(^)')[1];
+
+                connection.query(`UPDATE video SET description = '${description}' WHERE id = 1`, function (err, result, fields) {
+                    if (err) throw err;
+                });
+            }
+
             if (fs.existsSync(server_path)) remove_old_video();
             fs.mkdirsSync(server_path);
             callback(null, server_path);
-
+            save_description_to_db();
         },
         filename: (req, file, callback) => {    
 
@@ -82,7 +90,16 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.get('/', function(req, res) {
-    res.render('index');
+    const video_name = fs.readdirSync(`${path.dirname(require.main.filename)}/static/video`)[0];
+
+    connection.query(`SELECT description FROM video WHERE id = 1`, function (err, result, fields) {
+        if (err) throw err;
+
+        res.render('index', {
+            video_name,
+            description: result[0].description,
+        })
+    });
 })
 
 
