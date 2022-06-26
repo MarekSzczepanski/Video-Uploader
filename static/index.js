@@ -2,6 +2,7 @@ const input = document.querySelector('input');
 const label = document.querySelector('label');
 const video = document.querySelector('video');
 const button = document.querySelector('button');
+const modal_close = document.querySelector('.modal-close');
 
 const upload_video = (e) => {
     e.stopPropagation();
@@ -59,13 +60,15 @@ const manage_button_state = (text, layout) => {
     label.className = layout;
 }
 
-const open_upload_modal = () => {
+const toggle_upload_modal = (value) => {
     const modal = document.querySelector('.modal');
     const overlay = document.querySelector('.overlay');
+    const display = ['none', 'block'];
 
-    modal.style.display = 'block';
-    overlay.style.display = 'block';
+    modal.style.display = display[+value];
+    overlay.style.display = display[+value];
 }
 
 input.addEventListener('change', (e) => upload_video(e));
-button.addEventListener('click', open_upload_modal);
+button.addEventListener('click', () => toggle_upload_modal(true));
+modal_close.addEventListener('click', () => toggle_upload_modal(false));
