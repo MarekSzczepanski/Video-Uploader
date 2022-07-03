@@ -1,3 +1,4 @@
+// Run it on production by command: 'npx forever start -c nodemon server.js --exitcrash'
 const express = require('express');
 const path = require('path');
 const fs = require('fs-extra');
