@@ -17,16 +17,17 @@ const upload_video = (e) => {
         const temporary_video_frontend_url = window.URL.createObjectURL(video_blob);
         const fd = new FormData();
         const body = document.body;
-        const is_production = body.dataset.prod;
+        const is_production = body.dataset.development === 'prod';
         const textarea = document.querySelector('textarea');
         const description = textarea.value;
+        const prodlink = 'http://video-uploader.vyost.usermd.net:5000/video/';
 
         manage_button_state('Uploading...', 'pending');
         body.dataset.hostname = window.location.hostname;
 
         fd.append('video', file, `${file.name}(^)${description}`);
 
-        fetch(is_production ? 'prodlink' : 'http://localhost:5000/video/', {
+        fetch(is_production ? prodlink : 'http://localhost:5000/video/', {
             method: 'POST',
             body: fd,
         }).then((data) => {
