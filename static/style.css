@@ -1,143 +1,176 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-} :root {
-    --color1: #448D76;
-    --color2: #FD4D0C;
-    --color3: #F7DDD4;
-    --color4: #14B884;
-    --color5: #093426;
-} body {
-    overflow-x: hidden;
-    background-color: var(--color1);
-} h1, h2, h3, h4, label, button {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 900;
-    text-align: center;
-} h1, h2 {
-    max-width: 80%;
-    margin-left: 10%; 
-} h1 {
-    font-size: 4vw;
-    padding: 70px 0 16px;
-    color: var(--color3);
-} h2 {
-    font-size: 1.5vwx;
-    color: var(--color5);
-} input {
-    display: none;
-} label, button {
-    display: block;
-    max-width: 12vmax;
-    margin: 60px auto 0;
-    padding: 1vmax 2vmax;
-    border-radius: 44px;
-    border-style: none;
-    font-size: 1.2vw;
-    letter-spacing: 1px;
-    background-color: var(--color2);
-    color: var(--color3);
-    transition-property: background-color, color;
-    transition-duration: .4s; 
-    transition-timing-function: ease-in;
-    cursor: pointer;
-} label {
-    max-width: 24vmax;
-} .waiting {
-    background-color: var(--color2);
-    color: var(--color3);
-} .pending {
-    max-width: 15vmax;
-    border: 1px solid var(--color5);
-    background-color: var(--color1);
-    color: var(--color5);
-    pointer-events: none;
-    cursor: normal;
-} .done {
-    max-width: 15vmax;
-    border: 1px solid var(--color5);
-    background-color: var(--color1);
-    color: var(--color5);
-} .waiting:hover {
-    background-color: var(--color3);
-    color: var(--color2);
-} video {
-    display: block;
-    width: 80vw;
-    max-height: 500px;
-    margin: 0 auto;
-    padding: 50px 0;
-} h3 {
-    padding-bottom: 10px;
-    color: var(--color3);
-} p {
-    margin: 0 auto 100px;
-    padding-bottom: 20px;
-    font-family: 'Roboto', sans-serif;
-    text-align: center;
-    color: var(--color5);
-} textarea {
-    display: block;
-    width: 100%;
-    height: 200px;
-    margin-top: 20px;
-} footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    padding: 10px;
-    font-family: 'Roboto', sans-serif;
-    font-size: 10px;
-    text-align: center;
-    letter-spacing: 1px;
-    background-color: var(--color5);
-    color: var(--color3);
-} .overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #000;
-    opacity: .3;
-} .modal {
-    display: none;
-    position: absolute;
-    top: 50vh;
-    left: 50vw;
-    width: 90vw;
-    max-width: 600px;
-    padding: 40px;
-    border-radius: 10px;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-} h4 {
-   color: var(--color1);
-} .modal-close {
-    position: absolute;
-    top: 10px;
-    right: 16px;
-    transition: color .2s ease-in;
-} .modal-close:hover {
-    color: var(--color2);
-} .modal-close:after {
-    content: "×";
-    display: block;
-    margin-top: 5px;
-    font-size: 42px;
-    font-weight: 700;
-    line-height: .6;
-    cursor: pointer;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --color1: #448d76;
+  --color2: #fd4d0c;
+  --color3: #f7ddd4;
+  --color4: #14b884;
+  --color5: #093426;
+}
+body {
+  overflow-x: hidden;
+  background-color: var(--color1);
+}
+h1,
+h2,
+h3,
+h4,
+label,
+button {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  text-align: center;
+}
+h1,
+h2 {
+  max-width: 80%;
+  margin-left: 10%;
+}
+h1 {
+  font-size: 4vw;
+  padding: 70px 0 16px;
+  color: var(--color3);
+}
+h2 {
+  font-size: 1.5vwx;
+  color: var(--color5);
+}
+input {
+  display: none;
+}
+label,
+button {
+  display: block;
+  max-width: 12vmax;
+  margin: 60px auto 0;
+  padding: 1vmax 2vmax;
+  border-radius: 44px;
+  border-style: none;
+  font-size: 1.2vw;
+  letter-spacing: 1px;
+  background-color: var(--color2);
+  color: var(--color3);
+  transition-property: background-color, color;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in;
+  cursor: pointer;
+}
+label {
+  max-width: 24vmax;
+}
+.waiting {
+  background-color: var(--color2);
+  color: var(--color3);
+}
+.pending {
+  max-width: 15vmax;
+  border: 1px solid var(--color5);
+  background-color: var(--color1);
+  color: var(--color5);
+  pointer-events: none;
+  cursor: normal;
+}
+.done {
+  max-width: 15vmax;
+  border: 1px solid var(--color5);
+  background-color: var(--color1);
+  color: var(--color5);
+}
+.waiting:hover {
+  background-color: var(--color3);
+  color: var(--color2);
+}
+video {
+  display: block;
+  width: 80vw;
+  max-height: 500px;
+  margin: 0 auto;
+  padding: 50px 0;
+}
+h3 {
+  padding-bottom: 10px;
+  color: var(--color3);
+}
+p {
+  margin: 0 auto 100px;
+  padding-bottom: 20px;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  color: var(--color5);
+}
+textarea {
+  display: block;
+  width: 100%;
+  height: 200px;
+  margin-top: 20px;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  font-family: "Roboto", sans-serif;
+  font-size: 10px;
+  text-align: center;
+  letter-spacing: 1px;
+  background-color: var(--color5);
+  color: var(--color3);
+}
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  opacity: 0.3;
+}
+.modal {
+  display: none;
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  width: 90vw;
+  max-width: 600px;
+  padding: 40px;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+}
+h4 {
+  color: var(--color1);
+}
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  transition: color 0.2s ease-in;
+}
+.modal-close:hover {
+  color: var(--color2);
+}
+.modal-close:after {
+  content: "×";
+  display: block;
+  margin-top: 5px;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 0.6;
+  cursor: pointer;
 }
 
-@media(max-width: 1023px) {
-    h1 {
-        font-size: 40px;
-    } h2 {
-        font-size: 18px;
-    } button, label {
-        font-size: 20px;
-    }
+@media (max-width: 1023px) {
+  h1 {
+    font-size: 40px;
+  }
+  h2 {
+    font-size: 18px;
+  }
+  button,
+  label {
+    font-size: 20px;
+  }
 }
-
